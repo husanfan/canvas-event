@@ -1,5 +1,6 @@
 import React from 'react';
 import './FileDiff.css';
+import image from '../../images/image.jpg';
 
 class FileDiff extends React.PureComponent {
     constructor(props) {
@@ -299,7 +300,7 @@ class FileDiff extends React.PureComponent {
             h: h * r,
             word: word,
             i: i,
-            color: t === 'INSERT' ? 'green' : t === 'DELETE' ? 'red' : 'orange',
+            color: t === 'INSERT' ? 'rgba(0,255,0,0.3)' : t === 'DELETE' ? 'rgba(255,0,0,0.3)' : 'rgba(255,128,0,0.3)',
             b: false
         }
     }
@@ -373,6 +374,7 @@ class FileDiff extends React.PureComponent {
                 })
             }
             const env = e;
+            console.log(e);
             const x = env.pageX - env.target.offsetLeft;
             const y = env.pageY - env.target.offsetTop;
             const rects = this.state.preRects.concat(this.state.curRects);
@@ -387,7 +389,7 @@ class FileDiff extends React.PureComponent {
                 )
             })
             const curBorderList = [];
-            if (rst && rst.i) {
+            if (rst) {
                 this.state.preRects.forEach(v => {
                     if (v.i === rst.i) {
                         const p = [v.x, v.y, v.w, v.h];
@@ -480,6 +482,9 @@ class FileDiff extends React.PureComponent {
                     </div>
                 </div>
                 <div className="flex_box">
+                    <img
+                        src={image}
+                        style={{ width: '500px', position: 'absolute', zIndex: '-1' }} />
                     <div className="canvas_box">
                         <canvas
                             id="preCanvas"
